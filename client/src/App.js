@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
 
@@ -9,19 +9,19 @@ function App() {
   const callAPI = () => {
     fetch("http://localhost:9000/testAPI")
       .then(res => res.text())
-      .then(res => setApiResponse({ apiResponse: res }));
+      .then(res => setApiResponse({ response: res }));
   }
 
   useEffect(() => {
     callAPI()
-  })
+  }, [])
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {apiResponse}
+          {apiResponse.response}
         </p>
         <a
           className="App-link"
